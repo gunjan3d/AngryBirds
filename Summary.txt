@@ -1,0 +1,56 @@
+How To play the game
+
+press w to move camera backward for better view
+press s to move camera forward for close view
+press r to change camera angle from side view to mount view
+click and drag mouse to fire a bird
+press e to interact with the birds mid flight (for yellow bird the ability of moving fast will active and blue will split into more)
+
+
+Aspects completed :
+1. made the game 3d
+2. didnt use sprite everything is 3d 
+3. used physics simulations
+4. made 3 birds with diffrent abilities
+5. made front view and head mount view
+6. Didnt use any premade assets from marketplace
+7. used unreal engine 5 
+8. made 2 levels '
+9. made a basic ui for both level selection and main menu
+
+
+1.Approach for work and technical aspects 
+
+a. SLING
+	• First Started with blank template and made a class player character to resticted its movement made it static and added a static mesh sling 
+	• started working on the sling mechanism to make a sling i used a node called input touch which just takes the input from the mouse drag or touch and when the touch starts and when the touch ends the distance is calculated so that can be used as a measure of strength on the pull to the sliing
+	• next the path is predicted by taking the location of arrow component and the strength is multiplied with the impulse value
+the path is predicted by function called predict path by object type and to denote the path small bubble like objects are spawned
+	• next birds are spawned once the touch is removed or over and birds are spawned in order (red,blue,yellow) and each of them have a ability
+
+
+
+b. BIRDS
+	• all the birds are actors that can be spawned once the touch is remove and to add thier functionalities they are implementeed in sling blueprint as its a character blueprint it works better with user input 
+	• birds destroy themselves after a fixed time and thier movement is restriced to only one plane we can make them move in all planes to do that uncheck the restrict axis in thier blueprint
+
+
+c. GameMode
+	• in this game as the player wins if he/she manages to kill all the pigs then the game mode just checks if there are no pigs left u win by the node called get all actor of class and if returns an empty array then there are no pigs left and player wins
+	• but if u run out of all the birds then u lose and a lose or win screen is spawed depending on the conditoin
+
+
+d. pigs 
+	• the pigs are basic actor that can be spawned at a location and if something hits them with a velocity greater than 100 or 250 units/s or cm/s they destruct themselves and die
+
+
+2. Dificulty faced
+	• the spawing of multiple birds on interact was difficult as the logic for its was brute force just to spawn multiple at on interact but eventually i figured it out
+	• The check game win condition in the gamemode is unoptimised and runs on every tick it can be optimied by runing once every second but i am running out of time so will not improve it now
+	• the spawing of diffrent types of birds approach to solve brute force just spawn every birds on a switch statement such that it spawns birds in seqience (red,blue,yellow) or to use a random integer every time to spawn a random bird with get random int in range and connect ot to switch but i sticked with the first approach
+
+3. Optimisation to reduce time 
+	• moved most of the code from event tick to set timer by funtion
+	• all the code is in blueprints as it is faster to script and debug
+
+ 
